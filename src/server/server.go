@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"html/template"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,6 +14,10 @@ import (
 var defaultPort = 8080
 
 var mdPath string
+
+type WebContent struct {
+	MarkdownHtml string
+}
 
 // lanuch a http server with default port
 func Serve(path string) {
@@ -33,9 +38,21 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 		log.Printf("read file error: %v", err)
 		return
 	}
-	io.WriteString(w, string(render(content)))
-}
 
-func render(content []byte) string {
-	return string(blackfriday.MarkdownCommon(content))
+	// convert *.md file to basic html
+	markdownHtml := blackfriday.MarkdownCommon(content)
+
+	// convert html to rendered html
+	wc := WebContent{MarkdownHtml: string(markdownHtml)}
+	t, err := template.ParseFiles("static/html/index.html")
+	if err != nil {
+		log.Fatalf("parse file to html template error: %v", err)
+		io.WriteString(w, string(content))
+	}
+
+	err = t.Execute(w, wc)
+	if err != nil {
+		log.Fatalf("execute html template error: %v", err)
+		io.WriteString(w, string(content))
+	}
 }
