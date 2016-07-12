@@ -16,7 +16,7 @@ var defaultPort = 8080
 var mdPath string
 
 type WebContent struct {
-	MarkdownHtml string
+	MarkdownHtml interface{}
 }
 
 // lanuch a http server with default port
@@ -43,7 +43,7 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 	markdownHtml := blackfriday.MarkdownCommon(content)
 
 	// convert html to rendered html
-	wc := WebContent{MarkdownHtml: string(markdownHtml)}
+	wc := WebContent{MarkdownHtml: template.HTML(markdownHtml)}
 	t, err := template.ParseFiles("static/html/index.html")
 	if err != nil {
 		log.Fatalf("parse file to html template error: %v", err)
