@@ -27,6 +27,7 @@ func Serve(path string) {
 
 	s := &http.Server{Addr: fmt.Sprintf(":%d", defaultPort)}
 
+	log.Printf("server start on localhost:%d", defaultPort)
 	if err := s.ListenAndServe(); err != nil {
 		log.Fatalf("start server error: %v", err)
 	}
