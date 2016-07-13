@@ -9,7 +9,7 @@ Mdviewer(mdv) is a markdown server, it displays markdown files in your broswer.
 git clone https://github.com/zyfdegh/mdviewer.git
 go get github.com/russross/blackfriday
 cd mdviewer && ./build.sh
-cd bin && ./mdv README.md
+cd bin && ./mdv ../README.md
 ```
 
 Open your favourite web browser and type:
@@ -17,7 +17,20 @@ Open your favourite web browser and type:
 127.0.0.1:8080
 ```
 
-**bin/README.md** should be well styled in web page.
+**README.md** should be styled and displayed in the web page.
+
+# Add mdv to path
+If you feel good and want to use 'mdv' command in system wide, copy bin/* to $PATH.
+
+For Unix/Linux/MacOS:
+```sh
+cp bin/* /usr/local/bin
+```
+
+For Windows:
+```cygwin
+copy bin\* C:\Windows\System32\
+```
 
 # Thanks
 
