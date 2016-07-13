@@ -19,7 +19,7 @@ Open your favourite web browser and type:
 
 **README.md** should be styled and displayed in the web page.
 
-# Add mdv to path
+# Add to PATH
 If you feel good and want to use 'mdv' command in system wide, copy bin/* to $PATH.
 
 For Unix/Linux/MacOS:
@@ -32,13 +32,17 @@ For Windows:
 copy bin\* C:\Windows\System32\
 ```
 
+# For better experience
+Install broswer plugin like [Auto-Refresh][3] to refresh web page automatically if you're using Google Chrome.
+
 # Thanks
 
 This project was mainly inspired by [ryanuber/readme-server][1]
 
 # Related
 
-**Call-web-broswer**: Call system default web browser to open a url [zyfdegh/call-web-broswer][2]
+**Call-web-broswer**: Call system default web browser to open a url [zyfdegh/call-web-broswer][2].
 
 [1]:https://github.com/ryanuber/readme-server
 [2]:https://github.com/zyfdegh/call-web-broswer
+[3]:https://chrome.google.com/webstore/detail/auto-refresh/ifooldnmmcmlbdennkpdnlnbgbmfalko?utm_source=chrome-app-launcher-info-dialog

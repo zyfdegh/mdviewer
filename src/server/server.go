@@ -36,7 +36,7 @@ func Serve(path string) {
 
 	// find avaiable port from startPort to endPort
 	port := -1
-	for p := port; p <= endPort; p++ {
+	for p := startPort; p <= endPort; p++ {
 		log.Printf("try listen on localhost:%d...\n", p)
 		occupied, err := portInUse(p)
 		if occupied {
