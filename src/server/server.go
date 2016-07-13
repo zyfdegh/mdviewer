@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -14,7 +15,9 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-const defaultPort = 8080
+// find avaiable port from startPort to endPort
+const startPort = 8080
+const endPort = 8089
 
 // relative to binary file 'mdv'
 const htmlPath = "static/html/index.html"
@@ -31,9 +34,25 @@ func Serve(path string) {
 
 	http.HandleFunc("/", handleRoot)
 
-	s := &http.Server{Addr: fmt.Sprintf(":%d", defaultPort)}
+	// find avaiable port from startPort to endPort
+	port := -1
+	for p := port; p <= endPort; p++ {
+		log.Printf("try listen on localhost:%d...\n", p)
+		occupied, err := portInUse(p)
+		if occupied {
+			log.Printf("error: %v\n", err)
+			continue
+		}
+		port = p
+		break
+	}
 
-	log.Printf("server start on localhost:%d", defaultPort)
+	if port == -1 {
+		log.Fatalf("Sorry, all ports[%d~%d] are in use. I am tired.", startPort, endPort)
+	}
+
+	s := &http.Server{Addr: fmt.Sprintf(":%d", port)}
+	log.Printf("server start on localhost:%d", port)
 	if err := s.ListenAndServe(); err != nil {
 		log.Fatalf("start server error: %v", err)
 	}
@@ -79,4 +98,18 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 		log.Printf("execute html template error: %v", err)
 		io.WriteString(w, string(content))
 	}
+}
+
+func portInUse(port int) (bool, error) {
+	s := &http.Server{Addr: fmt.Sprintf(":%d", port)}
+	ln, err := net.Listen("tcp", s.Addr)
+	if err != nil {
+		return true, err
+	}
+
+	err = ln.Close()
+	if err != nil {
+		return true, err
+	}
+	return false, nil
 }
