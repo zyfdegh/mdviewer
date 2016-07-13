@@ -1,4 +1,7 @@
 # mdviewer
+
+![BuildStatus](https://travis-ci.org/zyfdegh/mdviewer.svg)
+
 ![Mdviewer logo](https://raw.githubusercontent.com/zyfdegh/mdviewer/master/raw/golang-markdown-viewer.png)
 
 Mdviewer(mdv) is a markdown server, it displays markdown files in your broswer.

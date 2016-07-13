@@ -1,0 +1,12 @@
+language: go
+
+go:
+        - 1.6
+        - tip
+
+before_install:
+
+script:
+        - go vet ./...
+        - go test ./...
+        - ./build.sh
