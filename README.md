@@ -1,6 +1,8 @@
 # mdviewer
 
-![BuildStatus](https://travis-ci.org/zyfdegh/mdviewer.svg)
+[![Build Status](https://travis-ci.org/zyfdegh/mdviewer.svg)](https://travis-ci.org/zyfdegh/mdviewer)
+
+[![Go Report](https://goreportcard.com/badge/github.com/zyfdegh/mdviewer)](https://goreportcard.com/report/github.com/zyfdegh/mdviewer)
 
 ![Mdviewer logo](https://raw.githubusercontent.com/zyfdegh/mdviewer/master/raw/golang-markdown-viewer.png)
 

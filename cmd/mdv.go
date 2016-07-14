@@ -5,11 +5,12 @@ import (
 	"os"
 	"runtime"
 
-	"../server"
+	"github.com/zyfdegh/mdviewer/server"
+
 	"github.com/spf13/cobra"
 )
 
-// Command `mdv` is root command of mdviewer
+// RootCmd is root command of mdviewer
 var RootCmd = &cobra.Command{
 	Use:   "mdv",
 	Short: "Mdviewer(mdv) is a markdown viewer, it displays markdown files in your browser.",

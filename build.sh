@@ -1,5 +1,5 @@
 #!/bin/bash
 
 rm -rf bin/*
-go build -o bin/mdv src/main.go
-cp -r src/static bin/
+go build -o bin/mdv main.go
+cp -r static bin/

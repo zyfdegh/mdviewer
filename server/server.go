@@ -15,7 +15,7 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-// find avaiable port from startPort to endPort
+// find available port from startPort to endPort
 const startPort = 8080
 const endPort = 8089
 
@@ -24,17 +24,18 @@ const htmlPath = "static/html/index.html"
 
 var mdPath string
 
+// WebContent is an inject interface for html template
 type WebContent struct {
 	MarkdownHtml interface{}
 }
 
-// lanuch a http server with default port
+// Server lanuchs a http server with an available port
 func Serve(path string) {
 	mdPath = path
 
 	http.HandleFunc("/", handleRoot)
 
-	// find avaiable port from startPort to endPort
+	// find available port from startPort to endPort
 	port := -1
 	for p := startPort; p <= endPort; p++ {
 		log.Printf("try listen on localhost:%d...\n", p)
