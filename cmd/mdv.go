@@ -3,7 +3,6 @@ package cmd
 import (
 	"log"
 	"os"
-	"runtime"
 
 	"github.com/zyfdegh/mdviewer/server"
 
@@ -16,11 +15,6 @@ var RootCmd = &cobra.Command{
 	Short: "Mdviewer(mdv) is a markdown viewer, it displays markdown files in your browser.",
 	Long:  "Mdviewer(mdv) is a markdown viewer, it opens your system default web browser and displays markdown files.",
 	Run: func(cmd *cobra.Command, args []string) {
-		if runtime.GOOS != "linux" {
-			log.Fatalln("Only linux is supported now.")
-			return
-		}
-
 		// 0 flag, 1 arg
 		// like "mdv readme.md"
 		if cmd.Flags().NArg() == 1 {
